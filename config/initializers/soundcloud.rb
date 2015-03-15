@@ -15,4 +15,5 @@ while tracks_remaining
     tracks_remaining = false
   end
 end
-$tracks = tracks.flatten!.select { |t| t.streamable }
+# try to include only streamable tracks that aren't huge mixes (50mb+)
+$tracks = tracks.flatten!.select { |t| t.streamable }.select {|t| t.original_content_size <= 50000000}
