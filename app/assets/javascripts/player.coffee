@@ -5,9 +5,9 @@ class Player
   play: (trackId) =>
     SC.stream '/tracks/' + trackId, {
       onfinish: =>
-        next()
+        @next()
       onsuspend: =>
-        next()
+        @next()
       ondataerror: ->
         alert 'error'
     }, (sound) =>
