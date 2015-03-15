@@ -4,9 +4,9 @@ class Player
 
   play: (trackId) =>
     SC.stream '/tracks/' + trackId, {
-      onfinish: ->
+      onfinish: =>
         next()
-      onsuspend: ->
+      onsuspend: =>
         next()
       ondataerror: ->
         alert 'error'
@@ -14,10 +14,10 @@ class Player
       sound.play()
       @currentTrackManagerId = sound.sID
 
-  stop: () ->
+  stop: () =>
     soundManager.pause(@currentTrackManagerId)
 
-  next: () ->
+  next: () =>
     window.location.reload();
 
 window.player = new Player
