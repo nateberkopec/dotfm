@@ -1,0 +1,13 @@
+<div style="position: absolute; top:0; height: 100%; width: 100%; background: rgba(0,0,0,.6)">
+</div>
+<div>
+  <% @tracks.each do |track| %>
+    <%= image_tag track.artwork_url, class: "pull-left", height: "100px", width: "100px" %>
+  <% end %>
+</div>
+<div style="position: absolute; top:45%; left: 40%">
+  <h1 style="color: white">nateberkopec.fm</h1>
+  <p class="lead text-center" style="color: white">
+    <span class="pointer" onclick="player.play(<%= @tracks.first.id %>)" >play</span> | pause | skip
+  </p>
+</div>
