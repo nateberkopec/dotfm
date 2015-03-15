@@ -5,9 +5,15 @@
     <%= image_tag track.artwork_url, class: "pull-left", height: "100px", width: "100px" %>
   <% end %>
 </div>
-<div style="position: absolute; top:45%; left: 40%">
+<div style="position: absolute; top:45%; width: 100%" class="text-center">
   <h1 style="color: white">nateberkopec.fm</h1>
-  <p class="lead text-center" style="color: white">
-    <span class="pointer" onclick="player.play(<%= @tracks.first.id %>)" >play</span> | pause | skip
+  <p class="lead" style="color: white">
+    <span class="pointer" onclick="player.stop(<%= @current_track.id %>)" >stop</span> |
+    <span class="pointer" onclick="player.next()" >skip</span>
   </p>
+  <p class="lead" style="color: white">
+    Playing: <%= @current_track.title %> <em>by</em> <%= @current_track.user.username %>
+    <%= link_to "(link)", @current_track.permalink_url %>
+  </p>
+  <script>$(document).ready( function () { player.play(<%= @current_track.id %>); });</script>
 </div>

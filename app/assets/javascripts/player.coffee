@@ -1,7 +1,23 @@
-player = {}
+class Player
 
-player.play = (track_id) ->
-  SC.stream '/tracks/' + track_id, (sound) ->
-    sound.play()
+  currentTrackManagerId: null
 
-window.player = player
+  play: (trackId) =>
+    SC.stream '/tracks/' + trackId, {
+      onfinish: ->
+        next()
+      onsuspend: ->
+        next()
+      ondataerror: ->
+        alert 'error'
+    }, (sound) =>
+      sound.play()
+      @currentTrackManagerId = sound.sID
+
+  stop: () ->
+    soundManager.pause(@currentTrackManagerId)
+
+  next: () ->
+    window.location.reload();
+
+window.player = new Player
